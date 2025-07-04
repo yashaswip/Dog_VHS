@@ -77,7 +77,11 @@ VHS = 6 × (distance_AB + distance_CD) / distance_EF
 Where:
 
 A–B → Long Axis.
+
+
 C–D → Short Axis.
+
+
 E–F → Vertebral (spinal) reference line.
 
 📚 References
