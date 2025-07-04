@@ -76,13 +76,14 @@ VHS = 6 × (distance_AB + distance_CD) / distance_EF
 ```
 Where:
 
-A–B → Long Axis
-C–D → Short Axis
-E–F → Vertebral (spinal) reference line
+A–B → Long Axis.
+C–D → Short Axis.
+E–F → Vertebral (spinal) reference line.
 
 📚 References
 
 📄 Dog Heart Vertebral Heart Size Point Detection – ResearchGate
+
 Youshan Zhang. Regressive Vision Transformer for Dog Cardiomegaly Assessment. Scientific Reports, 14(1):377471128, January 2024.
 
 ---
