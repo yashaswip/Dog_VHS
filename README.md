@@ -54,7 +54,10 @@ project/
 │   └── Labels/
 ├── Test_Images/
 │   └── Images/
-⚙️ Training the Model
+
+-----
+
+###⚙️ Training the Model
 
 net = VHSNet(pretrained=True).to(device)
 loss_fn = nn.MSELoss()
@@ -66,7 +69,8 @@ train_loss, valid_loss, valid_acc = train_model_v2(
 )
 
 torch.save(net.state_dict(), 'final_model_v2.pth')
-🧪 Inference & VHS Calculation
+
+##🧪 Inference & VHS Calculation
 
 test_data = CustomTestDataset('/content/Test_Images', build_transforms(224))
 predict_and_save_vhs(net, test_data, 224, 'test_results_v2.csv')
@@ -76,7 +80,8 @@ ImageName,VHS
 dog001.png,10.28
 dog002.png,9.95
 ...
-🧮 VHS Calculation Formula
+
+##🧮 VHS Calculation Formula
 
 VHS = 6 × (distance_AB + distance_CD) / distance_EF
 Where:
@@ -84,18 +89,16 @@ Where:
 A–B → Long Axis
 C–D → Short Axis
 E–F → Spine line
-📊 Sample Training Logs
+
+##📊 Sample Training Logs
 
 Epoch 1: Training Loss = 0.0342, Validation Loss = 0.0317
 Epoch 2: Training Loss = 0.0201, Validation Loss = 0.0189
 ...
 
-Model Path: https://drive.google.com/file/d/1UfxjRAu8wauFiKb2nk73d0WOdPVToHcA/view?usp=share_link
+##Model Path: https://drive.google.com/file/d/1UfxjRAu8wauFiKb2nk73d0WOdPVToHcA/view?usp=share_link
 
-📚 Citations
+##📚 Citations
 
-Singh, Vikash Kumar, et al. "Dog Heart Vertebral Heart Size Point Detection."
-ResearchGate, 2022.
-Link to Paper
 Zhang, Qoushan. "Regressive Vision Transformer for Dog Cardiomegaly Assessment."
 Scientific Reports, 14(1):377471128, January 2024.
