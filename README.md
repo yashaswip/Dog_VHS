@@ -1,4 +1,3 @@
-
 # 🐶 Dog Heart Vertebral Heart Size (VHS) Point Detection
 
 This project uses deep learning to detect six anatomical landmarks in thoracic X-ray images of dogs and compute the Vertebral Heart Size (VHS) — a diagnostic tool used by veterinarians to detect heart enlargement.
@@ -11,29 +10,17 @@ This project uses deep learning to detect six anatomical landmarks in thoracic X
 - **Output:** VHS (Vertebral Heart Size) measurement.
 - **Model:** EfficientNet-B7 (PyTorch)
 - **Paper Reference:**  
-  📄 [Dog Heart Vertebral Heart Size Point Detection – ResearchGate](https://www.researchgate.net/publication/386466350_Dog_Heart_Vertebral_Heart_Size_Point_Detection?_sg%5B0%5D=OrCVNRDrbmyN9tqS8Zwo7Exip9uFbx06tDR5yn9_v1d6iiuTjipZK-9weYC6nvZOc2g_m9slMksIroH8Rdl8ckme7kqOowM3rDb6agZN.f0Sy46_DiHovuNPWqEPxEH5Br9H1o10f9db91iLIzpkZSrzwKBP_9Xj8u73cl5z2fpa1awtczogHLm9duMf_ZA&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6ImhvbWUiLCJwYWdlIjoicHJvZmlsZSIsInByZXZpb3VzUGFnZSI6InByb2ZpbGUiLCJwb3NpdGlvbiI6InBhZ2VDb250ZW50In19)
-
----
-
-## 🖼️ Sample Images from Research Paper
-
-### 📌 Labeled Landmarks on X-ray
-
-![Landmarks](https://www.researchgate.net/profile/Vikash-Kumar-Singh/publication/386466350/figure/fig2/AS:1269537482637315@1651310069224/Labeled-landmarks-on-dog-thoracic-radiograph-used-to-calculate-VHS.png)
-
-### 📏 VHS Measurement Formula
-
-![VHS](https://www.researchgate.net/profile/Vikash-Kumar-Singh/publication/386466350/figure/fig1/AS:1269537482637312@1651310069218/Vertebral-Heart-Size-VHS-Calculation-Method-6-key-points-are-marked-A-B-C-D-E-F.png)
+  [Dog Heart Vertebral Heart Size Point Detection – ResearchGate](https://www.researchgate.net/publication/386466350_Dog_Heart_Vertebral_Heart_Size_Point_Detection?_sg%5B0%5D=OrCVNRDrbmyN9tqS8Zwo7Exip9uFbx06tDR5yn9_v1d6iiuTjipZK-9weYC6nvZOc2g_m9slMksIroH8Rdl8ckme7kqOowM3rDb6agZN.f0Sy46_DiHovuNPWqEPxEH5Br9H1o10f9db91iLIzpkZSrzwKBP_9Xj8u73cl5z2fpa1awtczogHLm9duMf_ZA&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6ImhvbWUiLCJwYWdlIjoicHJvZmlsZSIsInByZXZpb3VzUGFnZSI6InByb2ZpbGUiLCJwb3NpdGlvbiI6InBhZ2VDb250ZW50In19)
 
 ---
 
 ## 🧠 Model Architecture
 
-- **Backbone:** EfficientNet-B7 (pretrained on ImageNet)
-- **Output Layer:** Linear layer with 12 outputs (x, y for 6 points)
-- **Loss Function:** Mean Squared Error (MSE)
-- **Optimizer:** Adam
-- **Scheduler:** StepLR
+- Backbone: EfficientNet-B7 (pretrained on ImageNet)
+- Output Layer: Linear layer with 12 outputs (x, y for 6 points)
+- Loss Function: Mean Squared Error (MSE)
+- Optimizer: Adam
+- Scheduler: StepLR
 
 ---
 
@@ -54,10 +41,7 @@ project/
 │   └── Labels/
 ├── Test_Images/
 │   └── Images/
-
------
-
-###⚙️ Training the Model
+⚙️ Training the Model
 
 net = VHSNet(pretrained=True).to(device)
 loss_fn = nn.MSELoss()
@@ -69,36 +53,81 @@ train_loss, valid_loss, valid_acc = train_model_v2(
 )
 
 torch.save(net.state_dict(), 'final_model_v2.pth')
-
-##🧪 Inference & VHS Calculation
+🧪 Inference & VHS Calculation
 
 test_data = CustomTestDataset('/content/Test_Images', build_transforms(224))
 predict_and_save_vhs(net, test_data, 224, 'test_results_v2.csv')
 Sample Output (test_results_v2.csv):
+ImageName	VHS
+dog001.png	10.28
+dog002.png	9.95
+...	...
+🧮 VHS Calculation Formula
 
-ImageName,VHS
-dog001.png,10.28
-dog002.png,9.95
-...
-
-##🧮 VHS Calculation Formula
-
-VHS = 6 × (distance_AB + distance_CD) / distance_EF
+VHS
+=
+6
+×
+d
+i
+s
+t
+a
+n
+c
+e
+A
+B
++
+d
+i
+s
+t
+a
+n
+c
+e
+C
+D
+d
+i
+s
+t
+a
+n
+c
+e
+E
+F
+VHS=6× 
+distance 
+EF
+​	
+ 
+distance 
+AB
+​	
+ +distance 
+CD
+​	
+ 
+​	
+ 
 Where:
 
 A–B → Long Axis
 C–D → Short Axis
 E–F → Spine line
-
-##📊 Sample Training Logs
+📊 Sample Training Logs
 
 Epoch 1: Training Loss = 0.0342, Validation Loss = 0.0317
 Epoch 2: Training Loss = 0.0201, Validation Loss = 0.0189
 ...
+📁 Model Download Link
 
-##Model Path: https://drive.google.com/file/d/1UfxjRAu8wauFiKb2nk73d0WOdPVToHcA/view?usp=share_link
+Download Final Model
 
-##📚 Citations
+📚 Citations
 
 Zhang, Qoushan. "Regressive Vision Transformer for Dog Cardiomegaly Assessment."
 Scientific Reports, 14(1):377471128, January 2024.
