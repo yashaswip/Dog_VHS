@@ -26,12 +26,13 @@ This project uses deep learning to detect six anatomical landmarks in thoracic X
 
 ## 🛠️ Setup Instructions
 
-### 1. Install dependencies
+## 1. Install dependencies
 
 ```bash
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip install efficientnet_pytorch scipy pandas matplotlib
 2. Prepare your dataset structure
+
 project/
 ├── Train/
 │   ├── Images/
@@ -41,6 +42,7 @@ project/
 │   └── Labels/
 ├── Test_Images/
 │   └── Images/
+
 ⚙️ Training the Model
 
 net = VHSNet(pretrained=True).to(device)
@@ -53,6 +55,7 @@ train_loss, valid_loss, valid_acc = train_model_v2(
 )
 
 torch.save(net.state_dict(), 'final_model_v2.pth')
+
 🧪 Inference & VHS Calculation
 
 test_data = CustomTestDataset('/content/Test_Images', build_transforms(224))
@@ -62,41 +65,21 @@ ImageName	VHS
 dog001.png	10.28
 dog002.png	9.95
 ...	...
+
 🧮 VHS Calculation Formula
 
 VHS
 =
 6
 ×
-d
-i
-s
-t
-a
-n
-c
-e
+distance
 A
 B
 +
-d
-i
-s
-t
-a
-n
-c
-e
+distance
 C
 D
-d
-i
-s
-t
-a
-n
-c
-e
+distance
 E
 F
 VHS=6× 
@@ -126,6 +109,14 @@ Epoch 2: Training Loss = 0.0201, Validation Loss = 0.0189
 📁 Model Download Link
 
 Download Final Model
+
+📚 Citations
+
+Zhang, Qoushan.
+"Regressive Vision Transformer for Dog Cardiomegaly Assessment."
+Scientific Reports, 14(1):377471128, January 2024.
+
+
 
 📚 Citations
 
