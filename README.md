@@ -1,104 +1,62 @@
-🐶 Dog Heart Vertebral Heart Size (VHS) Point Detection
 
-This project uses deep learning to detect six anatomical landmarks in thoracic X-ray images of dogs and compute the Vertebral Heart Size (VHS) — a diagnostic tool used by veterinarians to detect heart enlargement.
+# 🐶 Dog Heart VHS Point Detection
 
-🚀 Project Overview
+This project uses deep learning to detect 6 anatomical landmarks in dog thoracic X-rays to calculate the **Vertebral Heart Size (VHS)** — a veterinary diagnostic measure for heart enlargement.
 
-Goal: Predict 6 anatomical landmark points on dog chest radiographs.
+## 🚀 Overview
 
-Output: VHS (Vertebral Heart Size) measurement.
+- **Task:** Landmark detection (6 keypoints) → VHS calculation  
+- **Model:** EfficientNet-B7 (PyTorch)  
+- **Input:** Dog chest radiographs (.png)  
+- **Output:** VHS value per image  
 
-Model: EfficientNet-B7 (PyTorch)
+## 🧠 Model Details
 
-Paper Reference:Dog Heart Vertebral Heart Size Point Detection – ResearchGate
+- **Backbone:** EfficientNet-B7 (pretrained)
+- **Loss:** Mean Squared Error (MSE)
+- **Optimizer:** Adam  
+- **Scheduler:** StepLR
 
-🧠 Model Architecture
-
-Backbone: EfficientNet-B7 (pretrained on ImageNet)
-
-Output Layer: Linear layer with 12 outputs (x, y for 6 points)
-
-Loss Function: Mean Squared Error (MSE)
-
-Optimizer: Adam
-
-Scheduler: StepLR
-
-🛠️ Setup Instructions
-
-1. Install dependencies
-
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-pip install efficientnet_pytorch scipy pandas matplotlib
-
-2. Prepare your dataset structure
+## 📁 Dataset Structure
 
 project/
 ├── Train/
-│   ├── Images/
-│   └── Labels/  (.mat files with 6 keypoints & VHS)
+│ ├── Images/
+│ └── Labels/ # .mat files (6 keypoints + VHS)
 ├── Valid/
-│   ├── Images/
-│   └── Labels/
+│ ├── Images/
+│ └── Labels/
 ├── Test_Images/
-│   └── Images/
+│ └── Images/
 
-⚙️ Training the Model
+
+## ⚙️ Setup & Run
+
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install efficientnet_pytorch scipy pandas matplotlib
+
+Train the model:
 
 net = VHSNet(pretrained=True).to(device)
-loss_fn = nn.MSELoss()
-optimizer = optim.Adam(net.parameters(), lr=0.001)
-scheduler = StepLR(optimizer, step_size=5, gamma=0.1)
-
-train_loss, valid_loss, valid_acc = train_model_v2(
-    net, train_loader, valid_loader, loss_fn, optimizer, scheduler, epochs=100
-)
-
-torch.save(net.state_dict(), 'final_model_v2.pth')
-
-🧪 Inference & VHS Calculation
-
-test_data = CustomTestDataset('/content/Test_Images', build_transforms(224))
-predict_and_save_vhs(net, test_data, 224, 'test_results_v2.csv')
-
-Sample Output (test_results_v2.csv):
-
-ImageName
-
-VHS
-
-dog001.png
-
-10.28
-
-dog002.png
-
-9.95
-
-🧲 VHS Calculation Formula
-
-
-
-Where:
-
-A–B → Long Axis
-
-C–D → Short Axis
-
-E–F → Spine line
-
-📊 Sample Training Logs
-
-Epoch 1: Training Loss = 0.0342, Validation Loss = 0.0317
-Epoch 2: Training Loss = 0.0201, Validation Loss = 0.0189
 ...
+train_model_v2(net, train_loader, valid_loader, ...)
 
-📁 Model Download Link
+Run inference:
 
-Download Final Model
+predict_and_save_vhs(net, test_data, 224, 'test_results.csv')
 
-📚 Citations
 
-Zhang, Qoushan."Regressive Vision Transformer for Dog Cardiomegaly Assessment."Scientific Reports, 14(1):377471128, January 2024.
+## 📏 VHS Formula
+
+VHS = 6 × (distance_AB + distance_CD) / distance_EF
+AB = Long Axis
+CD = Short Axis
+EF = Vertebrae reference line
+
+## 📚 References
+
+📄 Research Paper
+Youshan Zhang. Regressive Vision Transformer for Dog Cardiomegaly Assessment. Scientific Reports, 14(1):377471128, January 2024.
 
 
