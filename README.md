@@ -84,6 +84,12 @@ C–D → Short Axis.
 
 E–F → Vertebral (spinal) reference line.
 
+## 📁 Model Download
+
+[Download Final Model (EfficientNet-B7)](https://drive.google.com/file/d/1UfxjRAu8wauFiKb2nk73d0WOdPVToHcA/view?usp=share_link)
+
+
+
 📚 References
 
 📄 Dog Heart Vertebral Heart Size Point Detection – ResearchGate
